@@ -1,4 +1,4 @@
-from dimacs import loadDirectedWeightedGraph as load, readSolution
+from dimacs import loadWeightedGraph as load, readSolution
 from os import listdir
 from flow import solve
 
@@ -22,4 +22,3 @@ def test_all():
 
 if __name__ == '__main__':
         test_all()
-        

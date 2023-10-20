@@ -60,26 +60,33 @@ def max_flow(G, Cf, s, t):
 
 def gen_graph(E, n):
     G = [[] for _ in range(n)]
-    Cf = [0 for _ in range(len(E)*2)]
+    Cf = [0 for _ in range(len(E)*4)]
+
+    def add_edge(u, v, w):
+        nonlocal G
+        nonlocal Cf
+        nonlocal k
+
+        G[u].append((v, k))
+        Cf[k] = w
+        k += 1
+        G[v].append((u, k))
+        k += 1
 
     k = 0
     for u, v, w in E:
         u -= 1
         v -= 1
 
-        G[u].append((v, k))
-        Cf[k] = w
-        k += 1
-        
-        G[v].append((u, k))
-        Cf[k] = w
-        k += 1
+        add_edge(u, v, w)
+        add_edge(v, u, w)
 
     return G, Cf
 
 
 def solve(E, n):
     s = 0
+
     conn = inf
     for t in range(1, n):
         G, Cf = gen_graph(E, n)
