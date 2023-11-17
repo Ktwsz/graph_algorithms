@@ -10,7 +10,7 @@ def BFS(G, Cf, s, t):
     parent[s] = s
     q.append(s)
 
-    while(len(q)):
+    while len(q):
         u = q.popleft()
         if u == t:
             break

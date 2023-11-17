@@ -30,6 +30,30 @@ def BFS(G, Cf, s, t):
 
     return new_flow
 
+def DFS(G, Cf, s, t):
+    n = len(G)
+    parent = [-1 for _ in range(n)]
+    edge_id = [-1 for _ in range(n)]
+
+    def dfs_visit(u):
+        for v, id in G[u]:
+            if parent[v] == -1 and Cf[id] > 0:
+                parent[v] = u
+                edge_id[v] = id
+
+                dfs_visit(v)
+
+    parent[s] = s
+    dfs_visit(s)
+
+    if parent[t] == -1:
+        return None
+
+    new_flow = get_new_flow(Cf, parent, edge_id, s, t)
+    update_path(Cf, parent, edge_id, s, t, new_flow)
+
+    return new_flow
+
 def get_new_flow(Cf, parent, edge_id, s, t):
     new_flow = inf
     u = t
