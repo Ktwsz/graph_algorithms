@@ -5,6 +5,7 @@ from stoer_wagner import solve
 
 TEST_DIR = "connectivity"
 
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -15,6 +16,7 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
+
 
 def test_single(test_file):
     file_path = TEST_DIR+"/"+test_file
@@ -28,10 +30,13 @@ def test_single(test_file):
     else:
         print(f"{bcolors.FAIL}WA TEST {test_file}{bcolors.ENDC} [res: {bcolors.WARNING}{res}{bcolors.ENDC} | ans: {bcolors.OKGREEN}{ans}{bcolors.ENDC}]")
 
+
 def test_all():
     for test_file in listdir(TEST_DIR):
-        if test_file == 'grid100x100': continue
+        if test_file == 'grid100x100':
+            continue
         test_single(test_file)
 
+
 if __name__ == '__main__':
-        test_all()
+    test_all()

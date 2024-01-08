@@ -1,6 +1,7 @@
 from heapq import heappop, heappush, heapify
 from copy import deepcopy
 
+
 class Node:
     def __init__(self):
         self.edges = {}
@@ -18,6 +19,7 @@ class Node:
     def get_edge(self, v):
         return self.edges[v]
 
+
 def minimumCutPhase(G, n, edges_sum, start_v):
     s = [start_v]
 
@@ -33,6 +35,7 @@ def minimumCutPhase(G, n, edges_sum, start_v):
         s.append(next_v)
 
     return (s[-1], s[-2])
+
 
 def minimumCut(G, s):
     n = len(G)
@@ -57,11 +60,13 @@ def minimumCut(G, s):
 
 
 def merge_vertices(G, u, v, edges_sum, que):
-    if v in G[u].edges: G[u].del_edge(v)
+    if v in G[u].edges:
+        G[u].del_edge(v)
 
     for vert, weight in G[v].edges.items():
-        if vert == u: continue
-        
+        if vert == u:
+            continue
+
         G[u].add_edge(vert, weight)
         G[vert].del_edge(v)
         G[vert].add_edge(u, weight)
@@ -74,6 +79,7 @@ def merge_vertices(G, u, v, edges_sum, que):
         if edges_sum[vert] == weight: continue
         edges_sum[vert] = weight
         heappush(que, (-weight, vert))
+
 
 def gen_graph(E, n):
     G = [Node() for _ in range(n)]
