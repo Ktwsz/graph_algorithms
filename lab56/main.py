@@ -4,14 +4,12 @@ import sys
 
 from chordal import chordal_solve
 from coloring import coloring_solve
-from interval import interval_solve
 from maxclique import maxclique_solve
 from vcover import vcover_solve
 
 TEST_DIRS = {
     "chordal": ("chordal", chordal_solve),
     "coloring": ("coloring", coloring_solve),
-#    "interval": ("interval", interval_solve),
     "maxclique": ("maxclique", maxclique_solve),
     "vcover": ("vcover", vcover_solve)
 }
